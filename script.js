@@ -88,13 +88,46 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+let chosenCharacters = [];
+let lengthChoice;
+let specialChoice;
+let numericChoice;
+let lowerCasedChoice;
+let upperCasedChoice;
+let lengthError;
+
 // Function to prompt user for password options
 function getPasswordOptions() {
 
+  // initial prompt to selct password length
+  lengthChoice = prompt('Select password length from 8 - 128');
+
+  // if else statement to prompt user choices if password length parametres aree true, issues error alert if false
+  if (lengthChoice >= 8 && lengthChoice <= 128) {
+    specialChoice = confirm('Would you like special characters in your password?');
+    numericChoice = confirm('Would you like numbers in your password?');
+    lowerCasedChoice = confirm('Would you like lower case characters in your password?');
+    upperCasedChoice = confirm('Would you like upper case characters in your password?');
+  }
+  else {
+    lengthError = alert("Oops, you didn't select a number from 8 to 128");
+    return null;
+  }
+
+  // if statement to issue error alert if all choices return false
+  if (!specialChoice && !numericChoice && !lowerCasedChoice && !upperCasedChoice) {
+    alert("Oops you didn't select any options for your password, please try again");
+  }
 }
+getPasswordOptions();
+
+
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+
+
 
 }
 
