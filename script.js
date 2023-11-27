@@ -88,83 +88,80 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-let chosenCharacters = [];
-let finalPassword = [];
-let lengthChoice;
-let specialChoice;
-let numericChoice;
-let lowerCasedChoice;
-let upperCasedChoice;
-let lengthError;
-
-// Function to prompt user for password options
-function getPasswordOptions() {
-
-  // initial prompt to selct password length
-  lengthChoice = prompt('Select password length from 8 - 128');
-
-  // if else statement to prompt user choices if password length parametres are true, issues error alert if false
-  if (lengthChoice >= 8 && lengthChoice <= 128) {
-    specialChoice = confirm('Would you like special characters in your password?');
-    numericChoice = confirm('Would you like numbers in your password?');
-    lowerCasedChoice = confirm('Would you like lower case characters in your password?');
-    upperCasedChoice = confirm('Would you like upper case characters in your password?');
-  }
-  else {
-    lengthError = alert("Oops, you didn't select a number from 8 to 128");
-    return null;
-  }
-
-  // if statement to issue error alert if all choices return false
-  if (!specialChoice && !numericChoice && !lowerCasedChoice && !upperCasedChoice) {
-    alert("Oops you didn't select any options for your password, please try again");
-    return null;
-  }
-}
-getPasswordOptions();
-
-
-
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+  let randomNum = Math.floor(Math.random() * arr.length)
+  let randomChar = arr[randomNum]
 
-  // checking each array in turn and if selection is true adds selected array to the new chosen array
-  if (specialChoice) {
-    chosenCharacters = chosenCharacters.concat(specialCharacters);
-  }
-  if (numericChoice) {
-    chosenCharacters = chosenCharacters.concat(numericCharacters);
-  }
-  if (lowerCasedChoice) {
-    chosenCharacters = chosenCharacters.concat(lowerCasedCharacters);
-  }
-  if (upperCasedChoice) {
-    chosenCharacters = chosenCharacters.concat(upperCasedCharacters);
-  }
-  return chosenCharacters;
-
+  return randomChar
 }
-getRandom();
 
-// console log check to make sure concatonating the arrays has worked
-// console.log(specialCharacters.length);
-// console.log(numericCharacters.length);
-// console.log(lowerCasedCharacters.length);
-// console.log(upperCasedCharacters.length);
-// console.log(specialCharacters.length + numericCharacters.length + lowerCasedCharacters.length + upperCasedCharacters.length);
-console.log(chosenCharacters.length);
+
 
 
 // Function to generate password with user input
 function generatePassword() {
+  let chosenCharacters = [];
+  let finalPassword = [];
 
-  //
 
-  // let chosen = getPasswordOptions();
+  // initial prompt to selct password length
+  let lengthChoice = prompt('Select password length from 8 - 128');
 
-  // chosenCharacters = Math.floor(Math.random() * arr.length)
-  // let chosenElement = arr[chosenCharacters];
+
+  // if else statement to prompt user choices if password length parametres are true, issues error alert if false
+  if (lengthChoice >= 8 && lengthChoice <= 128) {
+    let specialChoice = confirm('Would you like special characters in your password?');
+    let numericChoice = confirm('Would you like numbers in your password?');
+    let lowerCasedChoice = confirm('Would you like lower case characters in your password?');
+    let upperCasedChoice = confirm('Would you like upper case characters in your password?');
+
+
+    // if statement to raise an error alert if none of the 4 char types are chosen
+    if (!specialChoice && !numericChoice && !lowerCasedChoice && !upperCasedChoice) {
+      alert("Oops you didn't select any options for your password, please try again");
+      return null;
+    }
+
+
+    // if a char type is chosen add that array into the chosen array
+    if (specialChoice) {
+      chosenCharacters = chosenCharacters.concat(specialCharacters);
+
+    }
+    if (numericChoice) {
+      chosenCharacters = chosenCharacters.concat(numericCharacters);
+
+    }
+    if (lowerCasedChoice) {
+      chosenCharacters = chosenCharacters.concat(lowerCasedCharacters);
+
+    }
+    if (upperCasedChoice) {
+      chosenCharacters = chosenCharacters.concat(upperCasedCharacters);
+
+    }
+
+
+    // run throrugh the chosen char array as many times as the user selected pushing random chars into the password
+    for (let i = 0; i < lengthChoice; i++) {
+      let character = getRandom(chosenCharacters)
+      finalPassword.push(character)
+      console.log(character);
+
+    }
+
+    return finalPassword.join('')
+
+  }
+
+
+  //error alert if the password length selected is outside the parameters
+  else {
+    alert("Oops, you didn't select a number from 8 to 128");
+    return null;
+  }
 
 }
 
