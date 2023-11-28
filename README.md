@@ -14,7 +14,7 @@ N/A.
 
 https://meisterstu.github.io/password-generator/
 
-<img width="1440" alt="Console-Finances-screenshot" src="./images/Console-Finances Screenshot.png">
+<img width="1440" alt="password-generator-screenshot" src="./images/screenshot.png">
 
 
 ## Credits
